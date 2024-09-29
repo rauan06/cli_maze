@@ -1,61 +1,8 @@
-package main
+package utils
 
-import (
-	"fmt"
+import "github.com/alem-platform/ap"
 
-	"github.com/alem-platform/ap"
-)
-
-// ANSI color codes
-const (
-	red    = "\033[41m"
-	white  = "\033[47m"
-	blue   = "\033[44m"
-	yellow = "\033[43m"
-	reset  = "\033[0m"
-)
-
-var (
-	h, w       int
-	grid       [][]int
-	wallChar   = "X"
-	playerChar = ">"
-	awardChar  = "@"
-)
-
-func main() {
-	readInput()
-	printHorizontalNotation(w)
-	printmap(h, w, grid)
-	ap.PutRune('\n')
-}
-
-func readInput() {
-	fmt.Scanf("%d %d", &h, &w)
-
-	// Reading the main
-	grid = make([][]int, h)
-	for i := range grid {
-		grid[i] = make([]int, w)
-		var row string
-		fmt.Scanf("%s", &row)
-		for j, char := range row {
-			// Convert ASCII digit to integer
-			grid[i][j] = int(char - '0')
-		}
-	}
-
-	// Reading the optional characters
-	var optionalChars string
-	fmt.Scanf("%s", &optionalChars)
-	if len(optionalChars) == 3 {
-		wallChar = string(optionalChars[0])
-		playerChar = string(optionalChars[1])
-		awardChar = string(optionalChars[2])
-	}
-}
-
-func printHorizontalNotation(w int) {
+func PrintHorizontalNotation(w int) {
 	blank := "      "
 	ap.PutRune('\n')
 	for j := 1; j <= w; j++ {
@@ -73,17 +20,17 @@ func printHorizontalNotation(w int) {
 	ap.PutRune('\n')
 
 	// Top of the Graph
-	ap.PutRune(' ')
-	ap.PutRune(' ')
-	ap.PutRune(' ')
-	ap.PutRune(' ')
+	for i := 0; i < 4; i++ {
+		ap.PutRune(' ')
+	}
+
 	for j := 0; j < w*7+w-1; j++ {
 		ap.PutRune('_')
 	}
 	ap.PutRune('\n')
 }
 
-func printmap(h, w int, grid [][]int) {
+func Printmap(h, w int, grid [][]int) {
 	// Walls of the Graph
 	oneWallPart := "       "
 	oneWallBottom := "_______"
