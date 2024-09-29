@@ -41,35 +41,35 @@ func Printmap(h, w int, grid [][]int) {
 	// Drawing the walls of the Graph
 	for i := 0; i < h; i++ {
 		for c := 0; c < 3; c++ {
-			printVerticalNotation(c, i+1)
+			PrintVerticalNotation(c, i+1)
 			for j := 0; j < w; j++ {
 				if j == 0 {
 					ap.PutRune('|')
 				}
 				switch grid[i][j] {
 				case 0:
-					printColoredString(red, zeroWall)
+					PrintColoredString(red, zeroWall)
 				case 2:
 					if c == 1 {
-						printColoredString(blue, twoWall)
+						PrintColoredString(blue, twoWall)
 					} else if c == 0 {
-						printColoredString(blue, oneWallPart)
+						PrintColoredString(blue, oneWallPart)
 					} else if c == 2 {
-						printColoredString(blue, oneWallBottom)
+						PrintColoredString(blue, oneWallBottom)
 					}
 				case 3:
 					if c == 1 {
-						printColoredString(yellow, threeWall)
+						PrintColoredString(yellow, threeWall)
 					} else if c == 0 {
-						printColoredString(yellow, oneWallPart)
+						PrintColoredString(yellow, oneWallPart)
 					} else if c == 2 {
-						printColoredString(yellow, oneWallBottom)
+						PrintColoredString(yellow, oneWallBottom)
 					}
 				default:
 					if c != 2 {
-						printColoredString(white, oneWallPart)
+						PrintColoredString(white, oneWallPart)
 					} else {
-						printColoredString(white, oneWallBottom)
+						PrintColoredString(white, oneWallBottom)
 					}
 				}
 				ap.PutRune('|')
@@ -79,13 +79,13 @@ func Printmap(h, w int, grid [][]int) {
 	}
 }
 
-func printColoredString(color, str string) {
+func PrintColoredString(color, str string) {
 	for _, r := range color + str + reset {
 		ap.PutRune(r)
 	}
 }
 
-func printVerticalNotation(row, number int) {
+func PrintVerticalNotation(row, number int) {
 	if row != 1 {
 		ap.PutRune(' ')
 		ap.PutRune(' ')

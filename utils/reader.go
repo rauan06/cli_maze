@@ -46,8 +46,7 @@ func ReadInput() string {
 			if !IsValidInput(char) {
 				return "error"
 			}
-
-			grid[i][j] = int(char)
+			grid[i][j] = int(char - '0')
 		}
 	}
 

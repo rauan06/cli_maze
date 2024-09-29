@@ -8,7 +8,6 @@ import (
 
 func main() {
 	err := utils.ReadInput()
-
 	if err == "error" {
 		for _, r := range "Error: invalid inputs are given, try again\n" {
 			ap.PutRune(r)
